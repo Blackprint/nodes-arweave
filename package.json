@@ -1,21 +1,29 @@
 {
-  "name": "bp-your-library-name",
-  "description": "Description for your Blackprint nodes",
+  "name": "@blackprint/nodes-arweave",
+  "description": "Arweave for Blackprint",
   "version": "0.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your/repository.git"
+    "url": "https://github.com/@blackprint/arweave.git"
   },
-  "module": "dist/change-me.min.mjs",
+  "module": "dist/nodes-arweave.mjs",
   "scripts": {
     "start": "blackprint serve",
+    "test": "jest ./tests/",
     "build-prod": "blackprint build production"
   },
+  "dependencies": {
+    "@blackprint/engine": "0.4.x",
+    "@blackprint/sketch": "0.4.x",
+    "scarletsframe": "0.35.x"
+  },
   "devDependencies": {
-    "@blackprint/cli-tools": "0.3.x"
+    "@blackprint/cli-tools": "0.3.x",
+    "jest": "^27.4"
   },
   "keywords": [
-    "blackprint"
+    "blackprint",
+    "arweave"
   ]
 }

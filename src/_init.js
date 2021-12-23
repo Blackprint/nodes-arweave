@@ -7,10 +7,11 @@
 
 /* Parallely load dependencies from CDN here (optional) */
 //>> imports(...) =>  sf.loader.mjs(...) or [import(..), ..];
-var [ SFMediaStream ] = await imports([
-	// This is just an example, remove if not needed
-	"https://cdn.jsdelivr.net/npm/sfmediastream@latest"
+await imports([
+	"https://cdn.jsdelivr.net/npm/arweave@1.10.19/bundles/web.bundle.min.js"
 ]);
+
+// window.Arweave
 
 
 /* or wait until the browser was loaded all script and the DOM was ready
@@ -38,8 +39,68 @@ let Blackprint = window.Blackprint.loadScope({
 });
 
 // Global shared context
-let Context = Blackprint.getContext('Your/Module/Name');
+let Context = Blackprint.createContext('Arweave');
 
 // This is needed to avoid duplicated event listener when using hot reload
 // Event listener that registered with same slot will be replaced
 Context.EventSlot = {slot: 'my-private-event-slot'};
+
+class NodeToast {
+	constructor(iface){
+		this.iface = iface;
+	}
+
+	clear(){
+		if(this.haveInfo)
+			this.haveInfo.destroy();
+		if(this.haveWarn)
+			this.haveWarn.destroy();
+		if(this.haveError)
+			this.haveError.destroy();
+
+		this.haveInfo = false;
+		this.haveWarn = false;
+		this.haveError = false;
+	}
+
+	_reduceText(text){
+		return text.replace(/\w{15,}/g, full => full.slice(0, 5)+'...');
+	}
+
+	info(text){
+		if(!this.iface.$decoration) return;
+		text = this._reduceText(text);
+
+		if(this.haveInfo)
+			this.haveInfo.text = text;
+		else
+			this.haveInfo = this.iface.$decoration.info(text);
+	}
+
+	warn(text){
+		if(!this.iface.$decoration) return;
+		text = this._reduceText(text);
+
+		if(this.haveWarn)
+			this.haveWarn.text = text;
+		else
+			this.haveWarn = this.iface.$decoration.warn(text);
+	}
+
+	error(text){
+		if(!this.iface.$decoration) return;
+		text = this._reduceText(text);
+
+		if(this.haveError)
+			this.haveError.text = text;
+		else
+			this.haveError = this.iface.$decoration.error(text);
+	}
+
+	success(text){
+		if(!this.iface.$decoration) return;
+		this.iface.$decoration.success(this._reduceText(text));
+	}
+}
+
+Context.NodeToast = NodeToast;
