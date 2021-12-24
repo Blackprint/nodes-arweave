@@ -11,7 +11,9 @@ class BalanceNode extends Blackprint.Node {
 			API: Arweave,
 			Address: String,
 		};
-		this.output = {Winston: Number};
+		this.output = {
+			Winston: String,
+		};
 
 		this._toast = new NodeToast(iface);
 	}
@@ -19,12 +21,13 @@ class BalanceNode extends Blackprint.Node {
 	async update(){
 		let {Input, Output} = this.const;
 
-		if(Input.API === null)
-			this._toast.warn("API is required");
+		if(Input.API == null)
+			return this._toast.warn("API is required");
 
 		if(Input.Address === '')
-			this._toast.warn("Address is required");
+			return this._toast.warn("Address is required");
 
+		this._toast.clear();
 		Output.Winston = await Input.API.wallets.getBalance(Input.Address);
 	}
 });
