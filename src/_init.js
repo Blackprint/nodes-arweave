@@ -104,3 +104,20 @@ class NodeToast {
 }
 
 Context.NodeToast = NodeToast;
+
+class Transaction {
+	constructor(data, type){
+		this._data = data;
+		this._type = type;
+	}
+}
+
+class Signer {
+	constructor(data){
+		this._data = data;
+	}
+}
+
+Context.Transaction = Transaction;
+Context.Signer = Signer;
+Context._BrowserWallet = new Signer();

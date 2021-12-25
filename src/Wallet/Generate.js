@@ -10,7 +10,8 @@ class GenerateNode extends Blackprint.Node {
 		this.input = {API: Arweave};
 		this.output = {
 			Public: String,
-			Private: Object
+			Private: Object,
+			Signer: Signer
 		};
 
 		this._toast = new NodeToast(iface);
@@ -26,6 +27,7 @@ class GenerateNode extends Blackprint.Node {
 		this._toast.clear();
 
 		Output.Private = wallet;
+		Output.Signer = new Signer(wallet);
 		Output.Public = await api.wallets.jwkToAddress(wallet);
 	}
 });
