@@ -46,7 +46,6 @@ class TagNode extends Blackprint.Node {
 		}
 
 		this._toast.clear();
-
 		Output.Tx = Input.Tx;
 	}
 });

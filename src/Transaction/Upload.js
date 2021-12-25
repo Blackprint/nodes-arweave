@@ -17,7 +17,8 @@ class UploadNode extends Blackprint.Node {
 		};
 
 		this.output = {
-			Tx: Transaction
+			Tx: Transaction,
+			Fee: String, // in Winston
 		};
 
 		this._toast = new NodeToast(iface);
@@ -41,8 +42,11 @@ class UploadNode extends Blackprint.Node {
 
 		this._toast.clear();
 
-		Output.Tx = new Transaction(await Input.API.createTransaction({
+		let tx = new Transaction(await Input.API.createTransaction({
 			data: Input.Data
 		}, signer._data), 'upload_file');
+
+		Output.Fee = tx._data.reward;
+		Output.Tx = tx;
 	}
 });
