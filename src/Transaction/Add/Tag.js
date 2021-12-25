@@ -34,14 +34,15 @@ class TagNode extends Blackprint.Node {
 			if(Input.ContentType.includes('/') === false)
 				return this._toast.warn("ContentType looks invalid type");
 
-			Tx.addTag('Content-Type', Input.ContentType);
+			this._toast.clear();
+			Tx._data.addTag('Content-Type', Input.ContentType);
 		}
 
 		if(Input.KV != null){
 			let kv = Input.KV;
 
 			for(let key in kv)
-				Tx.addTag(key, kv[key]);
+				Tx._data.addTag(key, kv[key]);
 		}
 
 		this._toast.clear();
