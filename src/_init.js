@@ -7,12 +7,17 @@
 
 /* Parallely load dependencies from CDN here (optional) */
 //>> imports(...) =>  sf.loader.mjs(...) or [import(..), ..];
-await imports([
-	"https://cdn.jsdelivr.net/npm/arweave@1.10.19/bundles/web.bundle.min.js"
-]);
+let Arweave;
+if(window.Blackprint.Environment.isBrowser){
+	await imports([
+		"https://cdn.jsdelivr.net/npm/arweave@1.10.19/bundles/web.bundle.min.js"
+	]);
 
-// window.Arweave
-
+	Arweave = window.Arweave;
+}
+else {
+	Arweave = await import('arweave');
+}
 
 /* or wait until the browser was loaded all script and the DOM was ready
  * without load another dependency
