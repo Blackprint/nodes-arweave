@@ -29,5 +29,6 @@ class BalanceNode extends Blackprint.Node {
 
 		this._toast.clear();
 		Output.Winston = await Input.API.wallets.getBalance(Input.Address);
+		// Input.API.ar.winstonToAR
 	}
 });

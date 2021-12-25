@@ -22,7 +22,7 @@ class GenerateNode extends Blackprint.Node {
 
 		let api = Input.API;
 
-		this._toast.warn("Generating...");
+		this._toast.warn("Generating RSA...");
 		let wallet = await api.wallets.generate();
 		this._toast.clear();
 
