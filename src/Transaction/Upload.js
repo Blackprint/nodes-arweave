@@ -13,7 +13,7 @@ class UploadNode extends Blackprint.Node {
 		this.input = {
 			API: Arweave,
 			Signer: Signer,
-			Data: Blackprint.Port.Union([ ArrayBuffer, String ])
+			Data: Blackprint.Port.Union([ ArrayBuffer, Blob, String ])
 		};
 
 		this.output = {
@@ -36,15 +36,20 @@ class UploadNode extends Blackprint.Node {
 		if(Input.Data == null)
 			return this._toast.warn("Data is required");
 
-		let signer = Input.Signer;
-		if(signer === Context._BrowserWallet)
-			signer = void 0;
+		let {Signer, Data} = Input;
+		if(Signer === Context._BrowserWallet)
+			Signer = void 0;
 
 		this._toast.clear();
 
-		let tx = new Transaction(await Input.API.createTransaction({
-			data: Input.Data
-		}, signer._data), 'upload_file');
+		let unsigned = await Input.API.createTransaction({
+			data: Data instanceof Blob ? await Data.arrayBuffer() : Data
+		}, Signer._data);
+
+		let tx = new Transaction(unsigned, 'upload_file');
+
+		if(Data.type)
+			unsigned.addTag('Content-Type', Data.type);
 
 		Output.Fee = tx._data.reward;
 		Output.Tx = tx;
