@@ -1,5 +1,5 @@
 [![NPM](https://img.shields.io/npm/v/@blackprint/nodes-arweave.svg)](https://www.npmjs.com/package/@blackprint/nodes-arweave)
-[![Build Status](https://github.com/blackprint/nodes-arweave/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/blackprint/nodes-arweave/actions/workflows/build.yml)
+[![Build Status](https://github.com/Blackprint/nodes-arweave/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Blackprint/nodes-arweave/actions/workflows/build.yml)
 
 ## Arweave for Blackprint
 
