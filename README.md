@@ -16,5 +16,11 @@ Blackprint.loadModuleFromURL([
 });
 ```
 
+## Development URL
+You can use this link to load unpublished nodes and still under development on GitHub.
+> `https://cdn.jsdelivr.net/gh/Blackprint/nodes-arweave@dist/nodes-arweave.mjs`
+
+Please append `/url-here?random-number` if your browser still using the cached files after the repository was updated.
+
 ### License
 MIT
