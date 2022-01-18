@@ -18,7 +18,7 @@ class GenerateNode extends Blackprint.Node {
 	}
 
 	async update(){
-		let {Input, Output} = this.const;
+		let {Input, Output} = this.ref;
 
 		let api = Input.API;
 

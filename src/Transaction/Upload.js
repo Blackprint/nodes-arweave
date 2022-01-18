@@ -25,7 +25,7 @@ class UploadNode extends Blackprint.Node {
 	}
 
 	async update(){
-		let {Input, Output} = this.const;
+		let {Input, Output} = this.ref;
 
 		if(Input.API == null)
 			return this._toast.warn("API is required");

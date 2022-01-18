@@ -23,7 +23,7 @@ class TagNode extends Blackprint.Node {
 	}
 
 	update(){
-		let {Input, Output} = this.const;
+		let {Input, Output} = this.ref;
 
 		if(Input.Tx == null)
 			return this._toast.warn("Tx is required");

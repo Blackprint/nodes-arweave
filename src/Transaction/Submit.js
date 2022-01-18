@@ -30,7 +30,7 @@ class SubmitNode extends Blackprint.Node {
 
 	_sign = null;
 	async update(){
-		let {Input, Output} = this.const;
+		let {Input, Output} = this.ref;
 
 		if(Input.API == null)
 			return this._toast.warn("API is required");
@@ -51,7 +51,7 @@ class SubmitNode extends Blackprint.Node {
 	async submit(){
 		await this._sign;
 
-		let {Input, Output} = this.const;
+		let {Input, Output} = this.ref;
 		this._toast.warn("Submitting...");
 
 		let {API, Tx} = Input;
