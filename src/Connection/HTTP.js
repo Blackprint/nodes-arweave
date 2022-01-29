@@ -1,15 +1,13 @@
 Blackprint.registerNode("Arweave/Connection/HTTP",
 class HTTPNode extends Blackprint.Node {
+	static output = { API: Arweave };
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Arweave Connection";
 		iface.description = "HTTP";
-
-		this.output = {
-			API: Arweave
-		};
 	}
 
 	imported(){

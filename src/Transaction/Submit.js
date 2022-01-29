@@ -1,29 +1,27 @@
 Blackprint.registerNode("Arweave/Transaction/Submit",
 class SubmitNode extends Blackprint.Node {
+	// Avoid automatically submit without user interaction
+	static input = {
+		Submit: Blackprint.Port.Trigger(function(){
+			this.submit();
+		}),
+		API: Arweave,
+		Signer: Signer,
+		Tx: Transaction,
+	};
+
+	static output = {
+		Status: Object,
+		Percent: Number,
+		TxId: String,
+	};
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Submit Tx";
 		iface.description = "Arweave sign and submit Tx";
-
-		let node = this;
-
-		// Avoid automatically submit without user interaction
-		this.input = {
-			Submit: Blackprint.Port.Trigger(function(){
-				node.submit();
-			}),
-			API: Arweave,
-			Signer: Signer,
-			Tx: Transaction,
-		};
-
-		this.output = {
-			Status: Object,
-			Percent: Number,
-			TxId: String,
-		};
 
 		this._toast = new NodeToast(iface);
 	}

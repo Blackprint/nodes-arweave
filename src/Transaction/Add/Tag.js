@@ -2,22 +2,20 @@
 
 Blackprint.registerNode("Arweave/Transaction/Add/Tag",
 class TagNode extends Blackprint.Node {
+	static input = {
+		Tx: Transaction,
+		ContentType: String,
+		KV: Object,
+	};
+
+	static output = { Tx: Transaction };
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Add tags";
 		iface.description = "Arweave Tx";
-
-		this.input = {
-			Tx: Transaction,
-			ContentType: String,
-			KV: Object,
-		};
-
-		this.output = {
-			Tx: Transaction
-		};
 
 		this._toast = new NodeToast(iface);
 	}

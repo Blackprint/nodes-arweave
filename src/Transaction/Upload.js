@@ -3,23 +3,23 @@
 
 Blackprint.registerNode("Arweave/Transaction/Upload",
 class UploadNode extends Blackprint.Node {
+	static input = {
+		API: Arweave,
+		Signer: Signer,
+		Data: Blackprint.Port.Union([ ArrayBuffer, Blob, String ])
+	};
+
+	static output = {
+		Tx: Transaction,
+		Fee: String, // in Winston
+	};
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Upload file";
 		iface.description = "Arweave Tx";
-
-		this.input = {
-			API: Arweave,
-			Signer: Signer,
-			Data: Blackprint.Port.Union([ ArrayBuffer, Blob, String ])
-		};
-
-		this.output = {
-			Tx: Transaction,
-			Fee: String, // in Winston
-		};
 
 		this._toast = new NodeToast(iface);
 	}

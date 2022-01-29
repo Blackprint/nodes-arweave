@@ -1,19 +1,17 @@
 Blackprint.registerNode("Arweave/Wallet/Balance",
 class BalanceNode extends Blackprint.Node {
+	static input = {
+		API: Arweave,
+		Address: String,
+	};
+	static output = { Winston: String };
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Wallet Balance";
 		iface.description = "Arweave";
-
-		this.input = {
-			API: Arweave,
-			Address: String,
-		};
-		this.output = {
-			Winston: String,
-		};
 
 		this._toast = new NodeToast(iface);
 	}

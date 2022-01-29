@@ -1,22 +1,22 @@
 Blackprint.registerNode("Arweave/Wallet/Import",
 class ImportNode extends Blackprint.Node {
+	static input = {
+		API: Arweave,
+		Object: Object,
+		Blob: Blob,
+	};
+	static output = {
+		Public: String,
+		Private: Object,
+		Signer: Signer
+	};
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Import Wallet";
 		iface.description = "Arweave";
-
-		this.input = {
-			API: Arweave,
-			Object: Object,
-			Blob: Blob,
-		};
-		this.output = {
-			Public: String,
-			Private: Object,
-			Signer: Signer
-		};
 
 		this._toast = new NodeToast(iface);
 	}

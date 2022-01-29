@@ -126,3 +126,10 @@ class Signer {
 Context.Transaction = Transaction;
 Context.Signer = Signer;
 Context._BrowserWallet = new Signer();
+
+// Fix minified class name
+Blackprint.utils.renameTypeName({
+	'Transaction': Transaction,
+	'Signer': Signer,
+	'Arweave': Arweave,
+});
