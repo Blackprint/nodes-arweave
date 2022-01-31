@@ -8,7 +8,7 @@ Please specify the version to avoid breaking changes.
 
 ```js
 Blackprint.loadModuleFromURL([
-  'https://cdn.jsdelivr.net/npm/@blackprint/nodes-arweave@0.1.0/dist/nodes-arweave.mjs'
+  'https://cdn.jsdelivr.net/npm/@blackprint/nodes-arweave@0.2/dist/nodes-arweave.mjs'
 ], {
   // Turn this on if you want to load .sf.js, and .sf.css
   // only with single .mjs

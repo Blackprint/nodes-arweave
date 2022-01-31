@@ -1,7 +1,7 @@
 {
   "name": "@blackprint/nodes-arweave",
   "description": "Arweave for Blackprint",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,12 +13,10 @@
     "test": "jest ./tests/",
     "build-prod": "blackprint build production"
   },
-  "dependencies": {
+  "devDependencies": {
+    "scarletsframe": "0.35.x",
     "@blackprint/engine": "0.6.x",
     "@blackprint/sketch": "0.6.x",
-    "scarletsframe": "0.35.x"
-  },
-  "devDependencies": {
     "@blackprint/cli-tools": "0.3.x",
     "jest": "^27.4"
   },

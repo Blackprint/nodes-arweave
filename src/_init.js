@@ -40,7 +40,7 @@ let Blackprint = window.Blackprint.loadScope({
 	url: import.meta.url,
 
 	// This will autoload (*.sf.mjs) and (*.sf.css) file for Browser
-	hasInterface: true,
+	// hasInterface: true,
 });
 
 // Global shared context
