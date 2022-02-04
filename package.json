@@ -14,11 +14,11 @@
     "build-prod": "blackprint build production"
   },
   "devDependencies": {
-    "scarletsframe": "0.35.8",
-    "@blackprint/engine": "0.6.0",
-    "@blackprint/sketch": "0.6.0",
-    "@blackprint/cli-tools": "0.3.18",
-    "jest": "27.4.7"
+    "scarletsframe": "0.35.x",
+    "@blackprint/engine": "0.6.x",
+    "@blackprint/sketch": "0.6.x",
+    "@blackprint/cli-tools": "0.3.x",
+    "jest": "^27.4.7"
   },
   "keywords": [
     "blackprint",
