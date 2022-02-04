@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "config:base",
+    "schedule:nonOfficeHours"
+  ],
+  "addLabels": ["dependencies"],
+  "cloneSubmodules": true,
+  "stabilityDays": 7
+}
