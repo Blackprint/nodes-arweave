@@ -2,8 +2,7 @@ Blackprint.registerNode("Arweave/Wallet/Import",
 class ImportNode extends Blackprint.Node {
 	static input = {
 		API: Arweave,
-		Object: Object,
-		Blob: Blob,
+		Private: Blackprint.Port.Union([Object, Blob, String]),
 	};
 	static output = {
 		Public: String,
@@ -27,17 +26,22 @@ class ImportNode extends Blackprint.Node {
 		if(Input.API == null)
 			return this._toast.warn("API is required");
 
-		if(Input.Object == null && Input.Blob == null)
-			return this._toast.warn("Object or Blob is required");
+		if(!Input.Private)
+			return this._toast.warn("Private Key is required");
+
+		let privateKey = Input.Private;
+
+		if(privateKey.constructor === Blob)
+			privateKey = await Input.Blob.text();
+
+		if(privateKey.constructor === String)
+			privateKey = JSON.parse(privateKey);
 
 		this._toast.clear();
 		let api = Input.API;
 
-		if(Input.API.Object)
-			Output.Private = wallet;
-		else Output.Private = JSON.parse(await Input.Blob.text());
-
-		Output.Signer = new Signer(Output.Private);
-		Output.Public = await api.wallets.jwkToAddress(Output.Private);
+		Output.Signer = new Signer(privateKey);
+		Output.Public = await api.wallets.jwkToAddress(privateKey);
+		Output.Private = privateKey;
 	}
 });
