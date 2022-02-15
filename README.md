@@ -2,6 +2,10 @@
 [![Build Status](https://github.com/Blackprint/nodes-arweave/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Blackprint/nodes-arweave/actions/workflows/build.yml)
 
 ## Arweave for Blackprint
+This module gives you an ability to use [Arweave](https://arweave.org) with [Blackprint](https://github.com/Blackprint/Blackprint).
+
+### Examples
+Please go to [/example](https://github.com/Blackprint/nodes-arweave/tree/main/example) folder and import it with [Blackprint Editor](https://blackprint.github.io/dev.html).
 
 ## Import this nodes from URL
 Please specify the version to avoid breaking changes.
@@ -17,10 +21,15 @@ Blackprint.loadModuleFromURL([
 ```
 
 ## Development URL
-You can use this link to load unpublished nodes and still under development on GitHub.
-> `https://cdn.jsdelivr.net/gh/Blackprint/nodes-arweave@dist/nodes-arweave.mjs?1`
+You can use this link to load unpublished nodes and still under development on GitHub.<br>
+https://cdn.jsdelivr.net/gh/Blackprint/nodes-arweave@dist/nodes-arweave.mjs?1
 
-Please append `/url-here?random-number` if your browser still using the cached files after the repository was updated.
+> Please append `/url-here?random-number` if your browser still using the cached files
+
+<!--
+> You will need to purge cache from jsdelivr
+> https://purge.jsdelivr.net/gh/Blackprint/nodes-polkadot.js@dist/nodes-polkadotjs.mjs
+-->
 
 ### License
 MIT
