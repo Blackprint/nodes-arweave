@@ -8,7 +8,7 @@
 /* Parallely load dependencies from CDN here (optional) */
 //>> imports(...) =>  sf.loader.mjs(...) or [import(..), ..];
 let Arweave;
-if(window.Blackprint.Environment.isBrowser){
+if(true || !window.Blackprint.Environment.isNode){
 	await imports([
 		"https://cdn.jsdelivr.net/npm/arweave@1.10.19/bundles/web.bundle.min.js"
 	]);
@@ -16,6 +16,7 @@ if(window.Blackprint.Environment.isBrowser){
 	Arweave = window.Arweave;
 }
 else {
+	// Arweave module still using CJS require(), let's use the bundled version instead
 	Arweave = await import('arweave');
 }
 
@@ -133,3 +134,7 @@ Blackprint.utils.renameTypeName({
 	'Signer': Signer,
 	'Arweave': Arweave,
 });
+
+let Blob = window.Blob; // Browser/Deno
+if(Blob === void 0) // Node.js
+	Blob = (await import('node:buffer')).Blob;
