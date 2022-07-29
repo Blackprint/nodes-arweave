@@ -1,13 +1,23 @@
+/**
+ * Import a wallet from a private key
+ * @blackprint node
+ * @summary Arweave
+ */
 Blackprint.registerNode("Arweave/Wallet/Import",
 class ImportNode extends Blackprint.Node {
 	static input = {
+		/** API that already connected to Arweave's blockchain */
 		API: Arweave,
+		/** Private key */
 		Private: Blackprint.Port.Union([Object, Blob, String]),
 	};
 	static output = {
+		/** Public key (wallet address) */
 		Public: String,
+		/** Private key this must be keep secret */
 		Private: Object,
-		Signer: Signer
+		/** This wallet's signer */
+		Signer: Signer,
 	};
 
 	constructor(instance){
@@ -15,7 +25,6 @@ class ImportNode extends Blackprint.Node {
 
 		let iface = this.setInterface();
 		iface.title = "Import Wallet";
-		iface.description = "Arweave";
 
 		this._toast = new NodeToast(iface);
 	}

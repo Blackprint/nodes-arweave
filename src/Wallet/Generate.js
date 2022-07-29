@@ -1,10 +1,23 @@
+/**
+ * Generate new wallet randomly
+ * This may take a few minute on slow computer for generating RSA
+ * @blackprint node
+ * @summary Arweave
+ */
 Blackprint.registerNode("Arweave/Wallet/Generate",
 class GenerateNode extends Blackprint.Node {
-	static input = {API: Arweave};
+	static input = {
+		/** API that already connected to Arweave's blockchain */
+		API: Arweave,
+	};
+
 	static output = {
+		/** Public key (wallet address) */
 		Public: String,
+		/** Private key this must be keep secret */
 		Private: Object,
-		Signer: Signer
+		/** This wallet's signer */
+		Signer: Signer,
 	};
 
 	constructor(instance){
@@ -12,7 +25,6 @@ class GenerateNode extends Blackprint.Node {
 
 		let iface = this.setInterface();
 		iface.title = "Generate Wallet";
-		iface.description = "Arweave";
 
 		this._toast = new NodeToast(iface);
 	}

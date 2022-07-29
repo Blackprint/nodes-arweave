@@ -1,18 +1,33 @@
+/**
+ * Submit a transaction to be processed in the blockchain
+ * @blackprint node
+ * @summary Arweave sign and submit Tx
+ */
 Blackprint.registerNode("Arweave/Transaction/Submit",
 class SubmitNode extends Blackprint.Node {
 	// Avoid automatically submit without user interaction
 	static input = {
+		/** Trigger the submission */
 		Submit: Blackprint.Port.Trigger(function(){
 			this.submit();
 		}),
+		/** API that already connected to Arweave's blockchain */
 		API: Arweave,
+		/** Sender wallet's signer for signing the transaction */
 		Signer: Signer,
+		/** Transaction to be submitted */
 		Tx: Transaction,
 	};
 
 	static output = {
+		/** Raw status response */
 		Status: Object,
+		/** Percentage of uploaded file */
 		Percent: Number,
+		/**
+		 * Transaction id
+		 * You can use this to explore or download your file
+		 */
 		TxId: String,
 	};
 
@@ -21,7 +36,6 @@ class SubmitNode extends Blackprint.Node {
 
 		let iface = this.setInterface();
 		iface.title = "Submit Tx";
-		iface.description = "Arweave sign and submit Tx";
 
 		this._toast = new NodeToast(iface);
 	}

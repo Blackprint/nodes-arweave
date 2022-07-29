@@ -1,13 +1,20 @@
+/**
+ * Connect to Arweave's blockchain via HTTP/HTTPS
+ * @blackprint node
+ * @summary HTTP
+ */
 Blackprint.registerNode("Arweave/Connection/HTTP",
 class HTTPNode extends Blackprint.Node {
-	static output = { API: Arweave };
+	static output = {
+		/** API object from Arweave's library */
+		API: Arweave,
+	};
 
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Arweave Connection";
-		iface.description = "HTTP";
 	}
 
 	imported(){

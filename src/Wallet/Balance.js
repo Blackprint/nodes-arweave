@@ -1,17 +1,26 @@
+/**
+ * Submit a transaction to be processed in the blockchain
+ * @blackprint node
+ * @summary Arweave
+ */
 Blackprint.registerNode("Arweave/Wallet/Balance",
 class BalanceNode extends Blackprint.Node {
 	static input = {
+		/** API that already connected to Arweave's blockchain */
 		API: Arweave,
+		/** Wallet's address */
 		Address: String,
 	};
-	static output = { Winston: String };
+	static output = {
+		/** Wallet balance in Winston */
+		Balance: String,
+	};
 
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Wallet Balance";
-		iface.description = "Arweave";
 
 		this._toast = new NodeToast(iface);
 	}
@@ -26,7 +35,7 @@ class BalanceNode extends Blackprint.Node {
 			return this._toast.warn("Address is required");
 
 		this._toast.clear();
-		Output.Winston = await Input.API.wallets.getBalance(Input.Address);
+		Output.Balance = await Input.API.wallets.getBalance(Input.Address);
 		// Input.API.ar.winstonToAR
 	}
 });

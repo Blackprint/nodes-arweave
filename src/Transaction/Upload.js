@@ -1,17 +1,30 @@
 //> {Transaction, NodeToast, Context} = /_init.js
 //> {Arweave, Blackprint} = window
 
+/**
+ * Submit a transaction to be processed in the blockchain
+ * @blackprint node
+ * @summary Arweave Tx
+ */
 Blackprint.registerNode("Arweave/Transaction/Upload",
 class UploadNode extends Blackprint.Node {
 	static input = {
+		/** API that already connected to Arweave's blockchain */
 		API: Arweave,
+		/** Sender wallet's signer for signing the transaction */
 		Signer: Signer,
-		Data: Blackprint.Port.Union([ ArrayBuffer, Blob, String ])
+		/** Data that will be uploaded */
+		Data: Blackprint.Port.Union([ ArrayBuffer, Blob, String ]),
 	};
 
 	static output = {
+		/**
+		 * Transaction
+		 * You can submit this to blockchain to execute this transaction
+		 */
 		Tx: Transaction,
-		Fee: String, // in Winston
+		/** Estimated fee in Winston */
+		Fee: String,
 	};
 
 	constructor(instance){
@@ -19,7 +32,6 @@ class UploadNode extends Blackprint.Node {
 
 		let iface = this.setInterface();
 		iface.title = "Upload file";
-		iface.description = "Arweave Tx";
 
 		this._toast = new NodeToast(iface);
 	}

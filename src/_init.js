@@ -20,18 +20,6 @@ else {
 	Arweave = await import('arweave');
 }
 
-/* or wait until the browser was loaded all script and the DOM was ready
- * without load another dependency
- *
- * Warning: When using this, you must modify wrapped:'mjs' to wrapped:'async-mjs'
- * on blackprint.config.js, to avoid circular waiting (because this module also waiting)
- *
- * Info: imports.task() == sf.loader.task;
- */
-// await imports.task();
-
-
-
 //> Optional, just for Blackprint Editor
 // Let the Blackprint Editor know the source URL where
 // the registerNode and registerInterface belongs to
@@ -42,6 +30,9 @@ let Blackprint = window.Blackprint.loadScope({
 
 	// This will autoload (*.sf.mjs) and (*.sf.css) file for Browser
 	// hasInterface: true,
+
+	// This will autoload (*.docs.json) for Browser
+	hasDocs: true,
 });
 
 // Global shared context

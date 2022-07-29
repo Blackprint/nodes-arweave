@@ -4,18 +4,6 @@
 // This script will run first, and then the other .sf files
 // depends on blackprint.config.js configuration
 
-// Prepare stuff when the page is loading
-// maybe like loading our dependencies for the nodes
-
-/* If you have loaded any dependency from ./init.js can also wait from here
- * Warning: When using this, you must modify wrapped:'mjs' to wrapped:'async-mjs'
- * on blackprint.config.js, to avoid circular waiting (because this module also waiting)
- *
- * Info: imports.task() == sf.loader.task;
- */
-// await imports.task();
-
-
 // Because .js and .sf is separated
 // we also need to call LoadScope just like _init.js
 let Blackprint = window.Blackprint.loadScope({
@@ -28,4 +16,4 @@ let Blackprint = window.Blackprint.loadScope({
 let $ = sf.$;
 
 // Global shared context (wait it to avoid race condition)
-let Context = await Blackprint.getContext('Your/Module/Name');
+let Context = await Blackprint.getContext('Arweave');

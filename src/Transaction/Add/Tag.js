@@ -1,21 +1,31 @@
 //> {Transaction, Context} = /_init.js
 
+/**
+ * Submit a transaction to be processed in the blockchain
+ * @blackprint node
+ * @summary Arweave Tx
+ */
 Blackprint.registerNode("Arweave/Transaction/Add/Tag",
 class TagNode extends Blackprint.Node {
 	static input = {
+		/** Transaction that you want to add a tag into */
 		Tx: Transaction,
+		/** Content type tag */
 		ContentType: String,
+		/** Tags in key-value object */
 		KV: Object,
 	};
 
-	static output = { Tx: Transaction };
+	static output = {
+		/** Transaction that can be submitted to blockchain */
+		Tx: Transaction,
+	};
 
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Add tags";
-		iface.description = "Arweave Tx";
 
 		this._toast = new NodeToast(iface);
 	}
