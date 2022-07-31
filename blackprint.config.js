@@ -18,7 +18,7 @@ module.exports = {
 	header: "/* MIT Licensed */",
 
 	// Optional: Extract registerNode's JSDocs
-	bpDocs: '@cwd/dist/nodes-multimedia.docs.json',
+	bpDocs: '@cwd/dist/nodes-arweave.docs.json',
 
 	// (Required)
 	// The .js file probably can be imported for non-browser too
