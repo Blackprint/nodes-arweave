@@ -8,8 +8,8 @@ class SubmitNode extends Blackprint.Node {
 	// Avoid automatically submit without user interaction
 	static input = {
 		/** Trigger the submission */
-		Submit: Blackprint.Port.Trigger(function(){
-			this.submit();
+		Submit: Blackprint.Port.Trigger(function({ iface }){
+			iface.node.submit();
 		}),
 		/** API that already connected to Arweave's blockchain */
 		API: Arweave,

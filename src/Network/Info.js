@@ -9,8 +9,9 @@ class InfoNode extends Blackprint.Node {
 		/** API that already connected to Arweave's blockchain */
 		API: Arweave,
 		/** Refresh/fetch the info */
-		Refresh: Blackprint.Port.Trigger(async function(){
-			this.output.Data = await this.input.API.network.getInfo();
+		Refresh: Blackprint.Port.Trigger(async function({ iface }){
+			let node = iface.node;
+			node.output.Data = await node.input.API.network.getInfo();
 		})
 	};
 

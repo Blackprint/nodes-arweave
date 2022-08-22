@@ -11,13 +11,15 @@ class InfoNode extends Blackprint.Node {
 		/** Block hash */
 		Hash: String,
 		/** Refresh/fetch the info */
-		Refresh: Blackprint.Port.Trigger(async function(){
-			// this == node (Blackprint.Node)
-			let hash = this.input.Hash;
+		Refresh: Blackprint.Port.Trigger(async function({ iface }){
+			let node = iface.node;
+			let hash = node.input.Hash;
 
 			if(hash === '')
-				this.output.Data = await this.input.API.blocks.getCurrent();
-			else this.output.Data = await this.input.API.blocks.get(hash);
+				node.output.Data = await node.input.API.blocks.getCurrent();
+			else node.output.Data = await node.input.API.blocks.get(hash);
+			
+			node.routes.routeOut();
 		}),
 	};
 
