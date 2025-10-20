@@ -1,25 +1,6 @@
 // This script will run first, and then the other files
 // depends on blackprint.config.js configuration
 
-// Prepare stuff when the page is loading
-// maybe like loading our dependencies for the nodes
-
-
-/* Parallely load dependencies from CDN here (optional) */
-//>> imports(...) =>  sf.loader.mjs(...) or [import(..), ..];
-let Arweave;
-if(true || !window.Blackprint.Environment.isNode){
-	await imports([
-		"https://cdn.jsdelivr.net/npm/arweave@1.10.19/bundles/web.bundle.min.js"
-	]);
-
-	Arweave = window.Arweave;
-}
-else {
-	// Arweave module still using CJS require(), let's use the bundled version instead
-	Arweave = await import('arweave');
-}
-
 //> Optional, just for Blackprint Editor
 // Let the Blackprint Editor know the source URL where
 // the registerNode and registerInterface belongs to
@@ -33,6 +14,18 @@ let Blackprint = window.Blackprint.loadScope({
 
 	// This will autoload (*.docs.json) for Browser
 	hasDocs: true,
+});
+
+// Prepare stuff when the page is loading
+// maybe like loading our dependencies for the nodes
+var [ Arweave ] = await Blackprint.DepsLoader.js({
+	window: ['Arweave'],
+
+	// need to use 'npm install' first or must exist on node_modules, will dynamically imported
+	local: ['arweave'],
+
+	// for browser, Deno, or supported environment that have internet access
+	cdn: ["https://cdn.jsdelivr.net/npm/arweave@^1.15.7/bundles/web.bundle.min.js"]
 });
 
 // Global shared context
